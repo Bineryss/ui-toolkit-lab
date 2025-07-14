@@ -1,21 +1,21 @@
-using Mono.Cecil;
+using Inventory;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UIBuilder.UI
+namespace UI.UIBuilder
 {
 
     [UxmlElement]
     public partial class ItemElement : VisualElement
     {
-        public ItemData Data { set => container.dataSource = value; }
+        public UIItemData Data { set => container.dataSource = value; }
 
         private VisualElement container;
         public ItemElement()
         {
             Init();
         }
-        public ItemElement(ItemData data)
+        public ItemElement(UIItemData data)
         {
             VisualElement container = Init();
             container.dataSource = data;
