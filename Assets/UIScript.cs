@@ -43,6 +43,8 @@ public class UIScript : MonoBehaviour
         };
         button.clicked += updateList;
         root.Add(button);
+
+        root.Add(new UI.PureCode.ItemElement(data));
     }
 
     private void updateList()
