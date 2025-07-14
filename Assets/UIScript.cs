@@ -15,6 +15,7 @@ public class UIScript : MonoBehaviour
     [SerializeField] private Item itemData;
 
 
+    private ItemList list;
     void Start()
     {
         var root = document.rootVisualElement.Q("container");
@@ -29,11 +30,26 @@ public class UIScript : MonoBehaviour
         VisualElement item2 = new ItemElement(new UIItemData(itemData));
         root.Add(item2);
 
-        
+
         List<UIItemData> mapped = items
         .Select(item => new UIItemData(item))
         .ToList();
-        VisualElement itemList = new ItemList(mapped);
-        root.Add(itemList);
+        list = new ItemList(mapped);
+        root.Add(list);
+
+        Button button = new Button()
+        {
+            text = "refresh"
+        };
+        button.clicked += updateList;
+        root.Add(button);
+    }
+
+    private void updateList()
+    {
+        List<UIItemData> mapped = items
+        .Select(item => new UIItemData(item))
+        .ToList();
+        list.Data = mapped;
     }
 }
