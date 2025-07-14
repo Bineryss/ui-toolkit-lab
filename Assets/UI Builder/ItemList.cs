@@ -20,7 +20,7 @@ namespace UI.UIBuilder
             }
         }
 
-        private ListView listView;
+        private readonly ListView listView;
         private List<UIItemData> internalDataSource = new();
         public ItemList()
         {
