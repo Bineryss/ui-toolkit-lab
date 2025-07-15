@@ -32,7 +32,7 @@ namespace UI.UIBuilder
             listView.makeItem = () => new ItemElement();
             listView.bindItem = (element, index) =>
             {
-                ((ItemElement)element).Data = internalDataSource[index];
+                ((ItemElement) element).Data = internalDataSource[index];
             };
             listView.itemsSource = internalDataSource;
             listView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;

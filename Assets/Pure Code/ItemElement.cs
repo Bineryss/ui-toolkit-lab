@@ -10,8 +10,6 @@ namespace UI.PureCode
         private readonly VisualElement container;
         private readonly Label label;
 
-        [UxmlAttribute] public string Quantity { get; set; }
-
         public ItemElement()
         {
 
@@ -44,11 +42,6 @@ namespace UI.PureCode
             label.SetBinding(nameof(label.text), new DataBinding()
             {
                 dataSourcePath = new PropertyPath(nameof(UIItemData.Quantity)),
-                bindingMode = BindingMode.ToTarget,
-            });
-            label.SetBinding(nameof(Label.text), new DataBinding()
-            {
-                dataSource = Quantity,
                 bindingMode = BindingMode.ToTarget,
             });
             container.Add(label);
