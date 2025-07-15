@@ -1,5 +1,6 @@
-using UnityEngine;
+using Unity.Properties;
 using UnityEngine.UIElements;
+using UnityEngine;
 
 namespace UI.PureCode
 {
@@ -9,6 +10,8 @@ namespace UI.PureCode
         private readonly VisualElement container;
         private readonly Label label;
 
+        [UxmlAttribute] public string Quantity { get; set; }
+
         public ItemElement()
         {
 
@@ -16,19 +19,40 @@ namespace UI.PureCode
 
         public ItemElement(UIItemData data)
         {
+            dataSource = data;
             container = new();
-            container.SetBinding("style.backgroundColor", new DataBinding()
+
+            DataBinding colorBinding = new DataBinding()
             {
-                dataSource = data.BackgroundColor,
+                dataSourcePath = new PropertyPath(nameof(UIItemData.BackgroundColor)),
                 bindingMode = BindingMode.ToTarget
-            });
+            };
+
+            DataBinding backgroundColorBinding = new DataBinding()
+            {
+                dataSourcePath = new PropertyPath(nameof(UIItemData.BackgroundColor)),
+                bindingMode = BindingMode.ToTarget
+            };
+            backgroundColorBinding.sourceToUiConverters.AddConverter((ref Color color) => new StyleColor(new Color(color.r, color.g, color.b, 0.4f)));
+
+            container.SetBinding($"{nameof(VisualElement.style)}.{nameof(IStyle.backgroundColor)}", backgroundColorBinding);
+            container.style.borderTopWidth = 20;
+            container.SetBinding("style.borderTopColor", colorBinding);
             Add(container);
 
-            label = new()
+            label = new();
+            label.SetBinding(nameof(label.text), new DataBinding()
             {
-                text = "#000"
-            };
+                dataSourcePath = new PropertyPath(nameof(UIItemData.Quantity)),
+                bindingMode = BindingMode.ToTarget,
+            });
+            label.SetBinding(nameof(Label.text), new DataBinding()
+            {
+                dataSource = Quantity,
+                bindingMode = BindingMode.ToTarget,
+            });
             container.Add(label);
         }
     }
 }
+

@@ -1,10 +1,10 @@
 using Inventory;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace UI
 {
-
     public class UIItemData
     {
         [CreateProperty] public Color BackgroundColor { get => data.Rarity.Color; }

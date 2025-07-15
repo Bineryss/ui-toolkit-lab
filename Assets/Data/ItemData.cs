@@ -1,3 +1,4 @@
+using Unity.Properties;
 using UnityEngine;
 
 namespace Inventory
@@ -11,12 +12,10 @@ namespace Inventory
     [System.Serializable]
     public class Item : IItem
     {
-        public int Quantity { get => quantity; set => quantity = value; }
-        public Rarity Rarity { get => rarity; set => rarity = value; }
-        
-        // unity needs this for the editor...
-        [SerializeField] private int quantity;
-        [SerializeField] private Rarity rarity;
+        [field: SerializeField]
+        public int Quantity { get; set; }
+        [field: SerializeField]
+        public Rarity Rarity { get; set; }
     }
 
     [System.Serializable]

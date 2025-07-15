@@ -404,12 +404,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba1c9a81bfd2c8408563d8391a319ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - quantity: 12
+    rarity:
+      Label: 
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      Score: 0
+  - quantity: 12
+    rarity:
+      Label: 
+      Color: {r: 0.060068607, g: 0, b: 1, a: 1}
+      Score: 0
   document: {fileID: 1269705428}
   itemA: {fileID: 9197481963319205126, guid: dd3034a55e46f15459feec328db6e980, type: 3}
   itemData:
-    Quantity: 10
-    Color: {r: 1, g: 0, b: 0, a: 1}
+    quantity: 0
+    rarity:
+      Label: 
+      Color: {r: 1, g: 0.6934498, b: 0, a: 1}
+      Score: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

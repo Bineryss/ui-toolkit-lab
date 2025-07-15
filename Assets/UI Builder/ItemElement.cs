@@ -1,13 +1,11 @@
-using Inventory;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI.UIBuilder
 {
-
-    [UxmlElement]
-    public partial class ItemElement : VisualElement
+    public class ItemElement : VisualElement
     {
+        private static readonly VisualTreeAsset uxml = Resources.Load<VisualTreeAsset>("item");
         public UIItemData Data { set => container.dataSource = value; }
 
         private VisualElement container;
@@ -23,8 +21,13 @@ namespace UI.UIBuilder
 
         private VisualElement Init()
         {
-            VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("item");
-            container = asset.Instantiate();
+            if (uxml == null)
+            {
+                Debug.Log("⛔ Failed to load uxml file for ItemElement!");
+                return new VisualElement();
+            }
+
+            container = uxml.Instantiate();
             Add(container);
             return container;
         }

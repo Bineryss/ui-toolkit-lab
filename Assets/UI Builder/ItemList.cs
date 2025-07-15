@@ -28,7 +28,7 @@ namespace UI.UIBuilder
         public ItemList(List<UIItemData> data)
         {
             internalDataSource = data;
-            listView = Init().Q<ListView>();
+            listView = Init();
             listView.makeItem = () => new ItemElement();
             listView.bindItem = (element, index) =>
             {
@@ -39,12 +39,11 @@ namespace UI.UIBuilder
             listView.fixedItemHeight = 0;
         }
 
-        private VisualElement Init()
+        private ListView Init()
         {
-            VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("item-list");
-            VisualElement container = asset.Instantiate();
-            Add(container);
-            return container;
+            ListView listView = new();
+            Add(listView);
+            return listView;
         }
     }
 }
